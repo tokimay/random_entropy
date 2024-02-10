@@ -23,6 +23,7 @@ class MouseTracker(QtWidgets.QDialog):
             self.setWindowTitle('100% Done close the window now')
             print('Random {}bit entropy:\n'.format(self.size), self.entropy)
             print('len is:', len(self.entropy))
+            window.close()
         else:
             if self.addNew:
                 if len(self.entropy) > 1024:
@@ -43,7 +44,10 @@ class MouseTracker(QtWidgets.QDialog):
 
 
 if __name__ == "__main__":
-    size = int(sys.argv[1])
+    if len(sys.argv) > 1:
+        size = int(sys.argv[1])
+    else:
+        size = 256
     app = QApplication([])
     window = MouseTracker(size=size)
     window.show()

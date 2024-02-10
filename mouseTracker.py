@@ -2,7 +2,6 @@ import sys
 from PySide6.QtWidgets import QApplication
 from PySide6 import QtWidgets
 
-
 class MouseTracker(QtWidgets.QDialog):
     def __init__(self, parent=None, size=256):
         super(MouseTracker, self).__init__(parent)
@@ -44,17 +43,8 @@ class MouseTracker(QtWidgets.QDialog):
 
 
 if __name__ == "__main__":
-    size = 512
+    size = int(sys.argv[1])
     app = QApplication([])
     window = MouseTracker(size=size)
     window.show()
     sys.exit(app.exec())
-
-
-
-
-
-
-
-
-

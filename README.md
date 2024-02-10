@@ -1,6 +1,8 @@
 usage: <br />
 install Requeriment <br />
-
+````shell
+pip install PySide6
+````
 Run:  <br />
 ````shell
 $ python mouseTracker.py 32

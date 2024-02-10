@@ -1,7 +1,8 @@
 usage: <br />
 install Requeriment <br />
-````shell
+
 RUN  <br />
+````shell
 $ python mouseTracker.py 32 <br />
 ````
 Result: <br />

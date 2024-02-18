@@ -1,7 +1,6 @@
-usage: <br />
-install Requeriment <br />
+Install requirement: <br />
 ````shell
-pip install PySide6
+$ pip install PySide6
 ````
 Run:  <br />
 ````shell

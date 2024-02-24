@@ -17,8 +17,9 @@ class MouseTracker(QtWidgets.QDialog):
         self.setWindowTitle('Mouse Tracker')
 
     def mouseMoveEvent(self, event):
-        if len(self.entropy) > (self.size + 1024):
-            self.entropy = self.entropy[512:(self.size+512)]
+        div = 2048
+        if len(self.entropy) > div:
+            self.entropy = self.entropy[int(div/2):int((div/2) + self.size)]
             self.addNew = False
             self.setWindowTitle('100% Done close the window now')
             print('Random {}bit entropy:\n'.format(self.size), self.entropy)
@@ -26,15 +27,12 @@ class MouseTracker(QtWidgets.QDialog):
             window.close()
         else:
             if self.addNew:
-                if len(self.entropy) > 1024:
-                    self.setWindowTitle(
+                self.setWindowTitle(
                         '({} : {}) {}%'.format(
                             event.scenePosition().x(),
                             event.scenePosition().y(),
-                            int(((len(self.entropy) - 1024) * 100) / self.size)
+                            int(len(self.entropy * 100) / div)
                         ))
-                else:
-                    self.setWindowTitle('move mouse in box randomly')
                 if self.eventSelector:
                     self.entropy = self.entropy + bin(int(event.scenePosition().x()))[2:]
                     self.eventSelector = False

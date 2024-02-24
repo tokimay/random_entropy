@@ -18,7 +18,7 @@ class MouseTracker(QtWidgets.QDialog):
 
     def mouseMoveEvent(self, event):
         div = 2048
-        if len(self.entropy) > div:
+        if len(self.entropy) > (div + self.size):
             self.entropy = self.entropy[int(div/2):int((div/2) + self.size)]
             self.addNew = False
             self.setWindowTitle('100% Done close the window now')
@@ -31,7 +31,7 @@ class MouseTracker(QtWidgets.QDialog):
                         '({} : {}) {}%'.format(
                             event.scenePosition().x(),
                             event.scenePosition().y(),
-                            int(len(self.entropy * 100) / div)
+                            int(len(self.entropy * 100) / (div + self.size))
                         ))
                 if self.eventSelector:
                     self.entropy = self.entropy + bin(int(event.scenePosition().x()))[2:]
